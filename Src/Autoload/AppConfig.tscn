@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dppur5cej2akf"]
+
+[ext_resource type="Script" uid="uid://4skplkllo2ky" path="res://Src/Autoload/AppConfig.cs" id="1_030s3"]
+
+[node name="AppConfig" type="Node"]
+script = ExtResource("1_030s3")

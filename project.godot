@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-AppConfig="*res://Autoload/AppConfig.tscn"
+AppConfig="*res://Src/Autoload/AppConfig.tscn"
 
 [display]
 
@@ -31,6 +31,7 @@ project/assembly_name="Gato Slime"
 
 [gui]
 
+theme/custom="uid://b5u3mnki71ls4"
 theme/custom_font="uid://c65fp4qjhf1"
 
 [input]

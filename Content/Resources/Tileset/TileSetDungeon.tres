@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cc7fq4jmmcx02" path="res://Content/Art/cave-platformer-tileset-16x16.png" id="1_e1egk"]
 [ext_resource type="Texture2D" uid="uid://djne7iseytv3g" path="res://Content/Art/ComputerMediaTiles_001.png" id="2_yy8kn"]
-[ext_resource type="PackedScene" uid="uid://b0hyf6c5wa4sl" path="res://Game/Props/Ladder.tscn" id="3_8kujr"]
-[ext_resource type="PackedScene" uid="uid://duggrcmeefqmn" path="res://Game/Props/JumpPad.tscn" id="4_2cnut"]
+[ext_resource type="PackedScene" uid="uid://b0hyf6c5wa4sl" path="res://Src/Scenes/Props/Ladder.tscn" id="3_8kujr"]
+[ext_resource type="PackedScene" uid="uid://duggrcmeefqmn" path="res://Src/Scenes/Props/JumpPad.tscn" id="4_2cnut"]
 [ext_resource type="Texture2D" uid="uid://dx1casfqhaeda" path="res://Content/Art/decor.png" id="4_5u2qm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yy8kn"]
