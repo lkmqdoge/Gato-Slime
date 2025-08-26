@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bsuxrdje742yp"]
+
+[ext_resource type="Shader" uid="uid://brypnteef73nf" path="res://Content/Resources/Shader/RoughGradient.gdshader" id="1_ywdlg"]
+
+[resource]
+shader = ExtResource("1_ywdlg")
+shader_parameter/speed = 0.3
+shader_parameter/steps = 7
+shader_parameter/color_a = Color(0.887878, 0.326519, 0, 1)
+shader_parameter/color_b = Color(0.352941, 0.454902, 1, 1)

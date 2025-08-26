@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bltq7eib31lnp"]
+
+[ext_resource type="Shader" uid="uid://cfcxo2aj6g06" path="res://Content/Resources/Shader/Slime.gdshader" id="1_5cmu2"]
+
+[resource]
+shader = ExtResource("1_5cmu2")
+shader_parameter/resolution = Vector2(512, 512)
+shader_parameter/octaves = 4
+shader_parameter/speed = 1.0
+shader_parameter/frequency = 1.2
+shader_parameter/amplitude = 0.4
+shader_parameter/time_shift = 0.1
+shader_parameter/zoom = 5.0

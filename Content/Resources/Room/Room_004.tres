@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=2 format=3 uid="uid://dpuy8mxl00y28"]
+
+[ext_resource type="Script" uid="uid://u1l2umeu26k4" path="res://Game/World/Room/RoomData.cs" id="1_ohjiw"]
+
+[resource]
+script = ExtResource("1_ohjiw")
+Width = 12
+Height = 20
+SourcePath = "uid://er8igkf818ox"
+Tags = Array[String](["normal", "small"])
+metadata/_custom_type_script = "uid://u1l2umeu26k4"
