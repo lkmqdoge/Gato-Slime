@@ -1,6 +1,6 @@
 namespace GatoSlime.Game.Player;
 
-public class IdleState : PlayerState
+public class IdleState(Player player, PlayerStateMachine stateMachine) : PlayerState(player, stateMachine)
 {
     public override void UpdatePhysic(double delta)
     {
@@ -9,7 +9,7 @@ public class IdleState : PlayerState
 
     public override void UpdateLogic(double delta)
     {
-        if (Player.MoveDirection.X > 0.1f)
+        if (Player.IsMovingX())
         {
             StateMachine.SetState<WalkState>();
             return;
@@ -27,7 +27,7 @@ public class IdleState : PlayerState
             return;
         }
 
-        if (Player.IsOnLadder() && Player.MoveDirection.Y > 0.1f)
+        if (Player.IsOnLadder() && Player.IsMovingY())
         {
             StateMachine.SetState<LadderState>();
             return;

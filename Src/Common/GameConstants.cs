@@ -9,6 +9,8 @@ public static class GameConstants
     public const string MoveDown = "move_down";
     public const string Jump = "jump";
 
+    public const string DebugReload = "debug_reload";
+
     // Player physic
     public const float PlayerWalkSpeed = 400.0f;
     public const float PlayerWalkAcceleration = 350.0f;
@@ -24,5 +26,5 @@ public static class GameConstants
     public const float PlayerJumpBufferTime = 0.1f;
 
     // Ladder
-    public const float PlayerLadderSpeed = 50.0f;
+    public const float PlayerLadderSpeed = 9500.0f;
 }

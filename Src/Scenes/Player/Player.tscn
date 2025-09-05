@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://byagbfrpk8sgs"]
 
-[ext_resource type="Script" uid="uid://bq03tbi0t2f10" path="res://Src/Game/Player/Player.cs" id="1_e0wbv"]
+[ext_resource type="Script" uid="uid://bq03tbi0t2f10" path="res://Src/Simulation/Player/Player.cs" id="1_e0wbv"]
 [ext_resource type="Shader" uid="uid://dlwdlc80cvhck" path="res://Content/Resources/Shader/outline.gdshader" id="17_86ark"]
 [ext_resource type="Texture2D" uid="uid://dg1n3t31y7i05" path="res://Content/Art/Player/GatoSlime.png" id="17_nbrqn"]
 

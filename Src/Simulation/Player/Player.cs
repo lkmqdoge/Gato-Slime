@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Linq;
 using GatoSlime.Common;
 using GatoSlime.Game.Props;
 using Godot;
@@ -44,11 +47,11 @@ public partial class Player : CharacterBody2D
         _interactArea.AreaExited += OnInteractAreaExited;
 
         StateMachine = new PlayerStateMachine();
-        StateMachine.AddState(new IdleState());
-        StateMachine.AddState(new WalkState());
-        StateMachine.AddState(new JumpState());
-        StateMachine.AddState(new LadderState());
-        StateMachine.AddState(new IdleState());
+        StateMachine.AddState(new IdleState(this, StateMachine));
+        StateMachine.AddState(new WalkState(this, StateMachine));
+        StateMachine.AddState(new JumpState(this, StateMachine));
+        StateMachine.AddState(new FallState(this, StateMachine));
+        StateMachine.AddState(new LadderState(this, StateMachine));
 
         StateMachine.SetState<IdleState>();
     }
@@ -79,6 +82,10 @@ public partial class Player : CharacterBody2D
         JumpGravity = 2.0f * JumpHeight / (JumpTimeToPeak * JumpTimeToPeak);
         FallGravity = 2.0f * JumpHeight / (JumpTimeToDescent * JumpTimeToDescent);
     }
+
+    public bool IsMovingX() => Math.Abs(MoveDirection.X) > 0.1f;
+
+    public bool IsMovingY() => Math.Abs(MoveDirection.Y) > 0.1f;
 
     public void BufferJump()
     {
@@ -116,6 +123,7 @@ public partial class Player : CharacterBody2D
             (float)Mathf.MoveToward(Velocity.X, MoveDirection.X * Speed, Acceleration * delta),
             Velocity.Y
         );
+        MoveAndSlide(); 
     }
 
     public void DecelerateX(double delta)
@@ -124,6 +132,7 @@ public partial class Player : CharacterBody2D
             (float)Mathf.MoveToward(Velocity.X, 0, Deceleration * delta),
             Velocity.Y
         );
+        MoveAndSlide();
     }
 
     private void OnInteractAreaEntered(Area2D area)

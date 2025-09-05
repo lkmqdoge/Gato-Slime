@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b0hyf6c5wa4sl"]
 
-[ext_resource type="Script" uid="uid://ue87uo51d3r5" path="res://Src/Game/Props/Ladder.cs" id="1_sser5"]
+[ext_resource type="Script" uid="uid://ue87uo51d3r5" path="res://Src/Simulation/Props/Ladder.cs" id="1_sser5"]
 [ext_resource type="Texture2D" uid="uid://dx1casfqhaeda" path="res://Content/Art/decor.png" id="2_skgld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23ejo"]

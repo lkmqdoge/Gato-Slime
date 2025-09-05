@@ -35,12 +35,17 @@ public static partial class Logger
     {
         GD.Print(new Entry(message, LogLevel.INFO));
     }
+
+    internal static void Debug(Type type)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public sealed record Entry
 {
-    public string   Message   { get; init; }
-    public LogLevel LogLevel  { get; init; }
+    public string Message { get; init; }
+    public LogLevel LogLevel { get; init; }
     public DateTime Timestamp { get; init; }
 
     public Entry(string message, LogLevel logLevel)
