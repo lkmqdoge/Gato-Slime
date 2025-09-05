@@ -1,5 +1,31 @@
-[gd_resource type="Theme" format=3 uid="uid://b5u3mnki71ls4"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b5u3mnki71ls4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ue8oj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ue8oj"]
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.498039)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.396078, 0.403922, 0.294118, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcwew"]
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.498039)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.396078, 0.403922, 0.294118, 1)
+corner_detail = 1
 
 [resource]
+Button/styles/focus = SubResource("StyleBoxEmpty_ue8oj")
+Button/styles/hover = SubResource("StyleBoxFlat_ue8oj")
+Button/styles/normal = SubResource("StyleBoxFlat_ue8oj")
+Button/styles/pressed = SubResource("StyleBoxFlat_gcwew")
 DebugLabel/base_type = &"Label"
 DebugLabel/font_sizes/font_size = 8

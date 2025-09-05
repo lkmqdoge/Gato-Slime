@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cff7jokir16xc"]
+[gd_scene load_steps=3 format=3 uid="uid://cff7jokir16xc"]
 
 [ext_resource type="Script" uid="uid://ds6onoej7btei" path="res://Src/UI/MainMenu.cs" id="1_kss8r"]
 [ext_resource type="Material" uid="uid://bsuxrdje742yp" path="res://Content/Resources/Material/GradientMaterial.tres" id="2_5yxxf"]
-[ext_resource type="Texture2D" uid="uid://dg1n3t31y7i05" path="res://Content/Art/Player/GatoSlime.png" id="3_rleod"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -14,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_kss8r")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 material = ExtResource("2_5yxxf")
 layout_mode = 1
 anchors_preset = 15
@@ -22,51 +22,61 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 21.0
-offset_top = -26.0
-offset_right = 93.0
-offset_bottom = 26.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="GameTitleLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Gato Slime"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VersionLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "v 0.01"
+fit_content = true
+
+[node name="DateLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "05.09.2025"
+fit_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.520833
+anchor_top = 0.41875
+anchor_right = 0.895833
+anchor_bottom = 0.58125
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Play"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Exit"
-
-[node name="GameTitleLabel" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 16.0
-text = "Gato Slime"
-
-[node name="DesctiptionLabel" type="RichTextLabel" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -32.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/normal_font_size = 8
-bbcode_enabled = true
-text = "Небольшая игра для летней практики
-
-ДГТУ 2025 год Кизин ВПР23"
-fit_content = true
-
-[node name="GatoSlime" type="Sprite2D" parent="."]
-position = Vector2(16, 34)
-texture = ExtResource("3_rleod")

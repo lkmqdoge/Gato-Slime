@@ -8,13 +8,14 @@ public class LadderState(Player player, PlayerStateMachine stateMachine)
 {
     public override void Enter()
     {
-        Player.GlobalPosition = Player.LastLadderPosition;
+        Player.JumpsLeft = Player.MaxJumps;
     }
 
     public override void UpdatePhysic(double delta)
     {
+        var dX = Player.LastLadderPosition.X - Player.GlobalPosition.X;
         Player.Velocity = new Vector2(
-            0,
+            dX * 3,
             GameConstants.PlayerLadderSpeed * Player.MoveDirection.Y * (float)delta
         );
         Player.MoveAndSlide();

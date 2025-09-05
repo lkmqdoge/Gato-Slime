@@ -1,12 +1,17 @@
 using GatoSlime.Common;
+using GatoSlime.UI;
 using Godot;
-using System;
+
+namespace GatoSlime.Game;
 
 public partial class Main : Node
 {
-    public override void _Input(InputEvent @event)
+    public SceneManager SceneManager { get; private set; }
+    public UIFactory UIFactory { get; private set; } = new();
+
+    public override void _Ready()
     {
-        if (@event.IsActionPressed(GameConstants.DebugReload))
-            GetTree().ReloadCurrentScene();
+        SceneManager = GetNode<SceneManager>("%SceneManager");
+        SceneManager.ChangeUIScene(UIFactory.CreateUIElement("uid://cff7jokir16xc"));
     }
 }

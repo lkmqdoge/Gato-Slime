@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://duggrcmeefqmn"]
 
-[ext_resource type="Script" uid="uid://c5p1teyigpkat" path="res://Src/Simulation/Props/JumpPad.cs" id="1_q7ph6"]
+[ext_resource type="Script" uid="uid://c5p1teyigpkat" path="res://Src/Game/Props/JumpPad.cs" id="1_q7ph6"]
 [ext_resource type="Texture2D" uid="uid://dx1casfqhaeda" path="res://Content/Art/decor.png" id="2_0irjw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ruoeu"]
@@ -14,7 +14,6 @@ size = Vector2(14, 2)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_q7ph6")
-_jumpVelocity = 600.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_ruoeu")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cs60omj2o3a3c"]
 
 [ext_resource type="Material" uid="uid://bltq7eib31lnp" path="res://Content/Resources/Material/SlimeMaterial.tres" id="1_2i8f0"]
-[ext_resource type="Script" uid="uid://dcas8capi56m4" path="res://Src/Simulation/Props/SlimeFlood/LiquidBody.cs" id="2_a1qhd"]
+[ext_resource type="Script" uid="uid://dcas8capi56m4" path="res://Src/Game/Props/SlimeFlood/LiquidBody.cs" id="2_a1qhd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3my83"]
 size = Vector2(398, 298)

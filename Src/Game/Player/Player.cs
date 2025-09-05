@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Linq;
 using GatoSlime.Common;
 using GatoSlime.Game.Props;
 using Godot;
@@ -25,12 +23,17 @@ public partial class Player : CharacterBody2D
 
     public Vector2 LastLadderPosition { get; private set; }
 
+    public int JumpsLeft;
+    public int MaxJumps = 2;
+
     private int _laddersCount;
 
     private Area2D _interactArea;
+    private Node2D _view;
     private Vector2 _direction;
     private Timer _jumpBufferTimer;
     private Timer _coyoteTimer;
+    private AnimationNodeStateMachinePlayback _playback;
 
     public override void _Ready()
     {
@@ -42,6 +45,9 @@ public partial class Player : CharacterBody2D
         _jumpBufferTimer = GetNode<Timer>("%JumpBufferTimer");
         _coyoteTimer = GetNode<Timer>("%CoyoteTimer");
         _interactArea = GetNode<Area2D>("%InteractArea");
+        _view = GetNode<Node2D>("%View");
+        _playback = (AnimationNodeStateMachinePlayback)
+            GetNode<AnimationTree>("%AnimationTree").Get("parameters/playback");
 
         _interactArea.AreaEntered += OnInteractAreaEntered;
         _interactArea.AreaExited += OnInteractAreaExited;
@@ -60,6 +66,7 @@ public partial class Player : CharacterBody2D
     {
         ReadInput();
         StateMachine.UpdatePhysic(delta);
+        FlipView();
     }
 
     public override void _Process(double delta)
@@ -94,12 +101,32 @@ public partial class Player : CharacterBody2D
 
     public bool IsJumpBuffered()
     {
-        return _jumpBufferTimer.TimeLeft > 0;
+        return _jumpBufferTimer.TimeLeft > 0 && JumpsLeft > 0;
+    }
+
+    public void Jump()
+    {
+        _jumpBufferTimer.Stop();
+        JumpsLeft--;
+        Velocity = new Vector2(Velocity.X, JumpVelocity);
+        MoveAndSlide();
     }
 
     public void CancelJump()
     {
-        // Velocity = new Vector2(Velocity.X, 0.0f);
+        if (Velocity.Y < 0)
+            Velocity = new Vector2(Velocity.X, 0.0f);
+    }
+
+    public void StartCoyote()
+    {
+        if (_coyoteTimer.TimeLeft == 0)
+            _coyoteTimer.Start(GameConstants.PlayerCoyoteTime);
+    }
+
+    public bool IsCoyoteEnded()
+    {
+        return _coyoteTimer.TimeLeft == 0;
     }
 
     public bool IsOnLadder()
@@ -123,7 +150,7 @@ public partial class Player : CharacterBody2D
             (float)Mathf.MoveToward(Velocity.X, MoveDirection.X * Speed, Acceleration * delta),
             Velocity.Y
         );
-        MoveAndSlide(); 
+        MoveAndSlide();
     }
 
     public void DecelerateX(double delta)
@@ -133,6 +160,11 @@ public partial class Player : CharacterBody2D
             Velocity.Y
         );
         MoveAndSlide();
+    }
+
+    public void PlayAnimation(string name)
+    {
+        _playback.Travel(name);
     }
 
     private void OnInteractAreaEntered(Area2D area)
@@ -148,5 +180,10 @@ public partial class Player : CharacterBody2D
     {
         if (area is Ladder)
             _laddersCount--;
+    }
+
+    private void FlipView()
+    {
+        _view.Scale = new Vector2(Velocity.X > 0 ? 1 : -1, 1);
     }
 }

@@ -2,6 +2,12 @@ namespace GatoSlime.Game.Player;
 
 public class IdleState(Player player, PlayerStateMachine stateMachine) : PlayerState(player, stateMachine)
 {
+    public override void Enter()
+    {
+        Player.PlayAnimation("Idle");
+        Player.JumpsLeft = Player.MaxJumps;
+    }
+
     public override void UpdatePhysic(double delta)
     {
         Player.DecelerateX(delta);
