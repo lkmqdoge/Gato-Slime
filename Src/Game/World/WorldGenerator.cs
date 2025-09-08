@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using Godot;
 
@@ -8,7 +7,7 @@ namespace GatoSlime.Game.World;
 
 [GlobalClass]
 public partial class WorldGenerator : Node2D
-{ 
+{
     [Export]
     public bool Enable = true;
 

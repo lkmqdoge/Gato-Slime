@@ -2,13 +2,16 @@ using GatoSlime.Common;
 
 namespace GatoSlime.Game.Player;
 
-public class WalkState : PlayerState
+public class WalkState(Player player, PlayerStateMachine stateMachine)
+    : PlayerState(player, stateMachine)
 {
     public override void Enter()
     {
         Player.Speed = GameConstants.PlayerWalkSpeed;
         Player.Acceleration = GameConstants.PlayerWalkAcceleration;
         Player.Deceleration = GameConstants.PlayerWalkDeceleration;
+        Player.PlayAnimation("Walk");
+        Player.JumpsLeft = Player.MaxJumps;
     }
 
     public override void UpdatePhysic(double delta)
@@ -18,7 +21,7 @@ public class WalkState : PlayerState
 
     public override void UpdateLogic(double delta)
     {
-        if (Player.MoveDirection.X < 0.1f)
+        if (!Player.IsMovingX())
         {
             StateMachine.SetState<IdleState>();
             return;
@@ -30,13 +33,13 @@ public class WalkState : PlayerState
             return;
         }
 
-        if (Player.Velocity.Y > 0)
+        if (!Player.IsOnFloor())
         {
             StateMachine.SetState<FallState>();
             return;
         }
 
-        if (Player.IsOnLadder() && Player.MoveDirection.Y > 0.1f)
+        if (Player.IsOnLadder() && Player.IsMovingY())
         {
             StateMachine.SetState<LadderState>();
             return;

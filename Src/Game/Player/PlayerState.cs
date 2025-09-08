@@ -2,10 +2,10 @@ using LKMQUtils;
 
 namespace GatoSlime.Game.Player;
 
-public abstract class PlayerState : IState
+public abstract class PlayerState(Player player, PlayerStateMachine stateMachine) : IState
 {
-    public PlayerStateMachine StateMachine;
-    public Player Player;
+    public PlayerStateMachine StateMachine = stateMachine;
+    public Player Player = player;
 
     public virtual void Enter() { }
 

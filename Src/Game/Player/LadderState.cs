@@ -3,21 +3,27 @@ using Godot;
 
 namespace GatoSlime.Game.Player;
 
-public class LadderState : PlayerState
+public class LadderState(Player player, PlayerStateMachine stateMachine)
+    : PlayerState(player, stateMachine)
 {
     public override void Enter()
     {
-        Player.GlobalPosition = Player.LastLadderPosition;
+        Player.JumpsLeft = Player.MaxJumps;
     }
 
     public override void UpdatePhysic(double delta)
     {
-        Player.Velocity = new Vector2(0, GameConstants.PlayerLadderSpeed * Player.MoveDirection.Y);
+        var dX = Player.LastLadderPosition.X - Player.GlobalPosition.X;
+        Player.Velocity = new Vector2(
+            dX * 3,
+            GameConstants.PlayerLadderSpeed * Player.MoveDirection.Y * (float)delta
+        );
+        Player.MoveAndSlide();
     }
 
     public override void UpdateLogic(double delta)
     {
-        if (!Player.IsOnLadder() || Player.MoveDirection.X > 0.1f)
+        if (!Player.IsOnLadder() || Player.IsMovingX())
         {
             StateMachine.SetState<FallState>();
             return;

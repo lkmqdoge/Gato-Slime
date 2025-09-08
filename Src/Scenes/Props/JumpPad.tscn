@@ -14,7 +14,6 @@ size = Vector2(14, 2)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_q7ph6")
-_jumpVelocity = 600.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_ruoeu")

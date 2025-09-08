@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://byagbfrpk8sgs"]
+[gd_scene load_steps=21 format=3 uid="uid://byagbfrpk8sgs"]
 
 [ext_resource type="Script" uid="uid://bq03tbi0t2f10" path="res://Src/Game/Player/Player.cs" id="1_e0wbv"]
 [ext_resource type="Shader" uid="uid://dlwdlc80cvhck" path="res://Content/Resources/Shader/outline.gdshader" id="17_86ark"]
@@ -21,6 +21,9 @@ shader_parameter/add_margins = true
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nbrqn"]
 animation = &"Idle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c6ewm"]
+animation = &"Jump"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_86ark"]
 animation = &"Walk"
 
@@ -28,12 +31,18 @@ animation = &"Walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_86ark"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gcmj6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fvwl6"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_86ark"]
 states/Idle/node = SubResource("AnimationNodeAnimation_nbrqn")
-states/Idle/position = Vector2(394, 71)
+states/Idle/position = Vector2(433, 83)
+states/Jump/node = SubResource("AnimationNodeAnimation_c6ewm")
+states/Jump/position = Vector2(622, 200)
 states/Walk/node = SubResource("AnimationNodeAnimation_86ark")
 states/Walk/position = Vector2(622, 83)
-transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_nbrqn"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_86ark")]
+transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_nbrqn"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_86ark"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_gcmj6"), "Jump", "Walk", SubResource("AnimationNodeStateMachineTransition_fvwl6")]
 graph_offset = Vector2(52, 5)
 
 [sub_resource type="Animation" id="Animation_u78gx"]
@@ -51,6 +60,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0872665, -0.0872665]
+}
+
+[sub_resource type="Animation" id="Animation_c6ewm"]
+resource_name = "Jump"
+length = 0.55
+step = 0.0833333
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%BodySprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.251615, -8, 6.28319, -0.166667, 3.71681, 0.25, 52.7168),
+"times": PackedFloat32Array(0, 0.5)
 }
 
 [sub_resource type="Animation" id="Animation_wg23h"]
@@ -95,6 +120,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_86ark"]
 _data = {
 &"Idle": SubResource("Animation_u78gx"),
+&"Jump": SubResource("Animation_c6ewm"),
 &"OnWall": SubResource("Animation_wg23h"),
 &"RESET": SubResource("Animation_86ark"),
 &"Walk": SubResource("Animation_nbrqn")
@@ -125,6 +151,7 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_nbrqn")
 
 [node name="View" type="Node2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -1)
 
 [node name="BodySprite" type="Sprite2D" parent="View"]
