@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddv5qhbn0udih"]
+
+[ext_resource type="Script" uid="uid://np1yhill03ih" path="res://Main.cs" id="1_wd0a0"]
+[ext_resource type="Script" uid="uid://b86k5ulx4wrpq" path="res://Game/SceneManager.cs" id="2_64c24"]
+[ext_resource type="Script" uid="uid://b3l5qa4taoac2" path="res://UI/UIManager.cs" id="3_4m1ep"]
+[ext_resource type="PackedScene" uid="uid://bpxb6a4jyjhyq" path="res://UI/PauseMenu/PauseMenu.tscn" id="4_1lb6w"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_wd0a0")
+
+[node name="SceneManager" type="Node" parent="." node_paths=PackedStringArray("Root", "UIRoot")]
+unique_name_in_owner = true
+script = ExtResource("2_64c24")
+Root = NodePath("../SubViewportContainer/SubViewport/GameRoot")
+UIRoot = NodePath("../CanvasLayer/UIRoot")
+
+[node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("PauseLayer", "DebugLayer", "HUDLayer")]
+unique_name_in_owner = true
+script = ExtResource("3_4m1ep")
+PauseLayer = NodePath("../CanvasLayer/PauseLayer")
+DebugLayer = NodePath("../CanvasLayer/DebugLayer")
+HUDLayer = NodePath("../CanvasLayer/HUDLevel")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(384, 216)
+render_target_update_mode = 4
+
+[node name="GameRoot" type="Node" parent="SubViewportContainer/SubViewport"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UIRoot" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUDLevel" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DebugLayer" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseLayer" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="PauseMenu" parent="CanvasLayer/PauseLayer" instance=ExtResource("4_1lb6w")]
+process_mode = 2
+layout_mode = 1

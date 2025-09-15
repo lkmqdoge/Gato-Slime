@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://xxc1kb6myqnt"]
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://xxc1kb6myqnt"]
 
 [ext_resource type="Texture2D" uid="uid://cc7fq4jmmcx02" path="res://Content/Art/cave-platformer-tileset-16x16.png" id="1_e1egk"]
 [ext_resource type="Texture2D" uid="uid://djne7iseytv3g" path="res://Content/Art/ComputerMediaTiles_001.png" id="2_yy8kn"]
-[ext_resource type="PackedScene" uid="uid://b0hyf6c5wa4sl" path="res://Src/Scenes/Props/Ladder.tscn" id="3_8kujr"]
-[ext_resource type="PackedScene" uid="uid://duggrcmeefqmn" path="res://Src/Scenes/Props/JumpPad.tscn" id="4_2cnut"]
+[ext_resource type="PackedScene" uid="uid://b0hyf6c5wa4sl" path="res://Game/Props/Ladder/Ladder.tscn" id="3_8kujr"]
+[ext_resource type="PackedScene" uid="uid://duggrcmeefqmn" path="res://Game/Props/JumpPad/JumpPad.tscn" id="4_2cnut"]
 [ext_resource type="Texture2D" uid="uid://dx1casfqhaeda" path="res://Content/Art/decor.png" id="4_5u2qm"]
+[ext_resource type="PackedScene" uid="uid://cp6jh82p66cco" path="res://Game/Props/Traps/Spikes.tscn" id="5_3ikc0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yy8kn"]
 texture = ExtResource("1_e1egk")
@@ -190,6 +191,7 @@ texture = ExtResource("2_yy8kn")
 resource_name = "Props"
 scenes/1/scene = ExtResource("3_8kujr")
 scenes/2/scene = ExtResource("4_2cnut")
+scenes/3/scene = ExtResource("5_3ikc0")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2cnut"]
 texture = ExtResource("4_5u2qm")

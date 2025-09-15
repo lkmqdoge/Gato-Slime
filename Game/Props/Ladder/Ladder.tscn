@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0hyf6c5wa4sl"]
+
+[ext_resource type="Script" uid="uid://ue87uo51d3r5" path="res://Game/Props/Ladder/Ladder.cs" id="1_sser5"]
+[ext_resource type="Texture2D" uid="uid://dx1casfqhaeda" path="res://Content/Art/decor.png" id="2_skgld"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23ejo"]
+size = Vector2(10, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23ejo"]
+atlas = ExtResource("2_skgld")
+region = Rect2(0, 32, 16, 16)
+
+[node name="Ladder" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_sser5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_23ejo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_23ejo")

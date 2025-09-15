@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://sm72jpasqvio"]
+
+[ext_resource type="Texture2D" uid="uid://bpxvcikqrdcqm" path="res://Content/Art/Slime.png" id="1_3osgk"]
+[ext_resource type="Script" uid="uid://bqjx067swkh7u" path="res://Game/Entity/Enemy/BlueSlime/BlueSlime.cs" id="1_mhqgg"]
+[ext_resource type="Script" uid="uid://cusai3aj6yh2q" path="res://Game/Entity/Components/DamageArea.cs" id="3_6nnid"]
+[ext_resource type="Script" uid="uid://kjkvedqb8vej" path="res://Game/Entity/Components/Hitbox.cs" id="5_1oo8g"]
+[ext_resource type="Script" uid="uid://m8jpuoctuqms" path="res://Game/Entity/Components/KnockbackPlayer.cs" id="5_inplv"]
+
+[sub_resource type="Resource" id="Resource_cmeqi"]
+script = ExtResource("5_inplv")
+KnockbackPower = 240.0
+metadata/_custom_type_script = "uid://m8jpuoctuqms"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yk7sh"]
+radius = 5.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6nnid"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3osgk"]
+size = Vector2(12, 12)
+
+[node name="BlueSlime" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_mhqgg")
+
+[node name="DamageArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_6nnid")
+OnHitEffects = [SubResource("Resource_cmeqi")]
+metadata/_custom_type_script = "uid://cusai3aj6yh2q"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yk7sh")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("Entity")]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("5_1oo8g")
+Entity = NodePath("..")
+metadata/_custom_type_script = "uid://kjkvedqb8vej"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6nnid")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3osgk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("1_3osgk")

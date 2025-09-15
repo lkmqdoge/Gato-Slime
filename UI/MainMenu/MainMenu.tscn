@@ -1,0 +1,99 @@
+[gd_scene load_steps=3 format=3 uid="uid://cff7jokir16xc"]
+
+[ext_resource type="Script" uid="uid://ds6onoej7btei" path="res://UI/MainMenu/MainMenu.cs" id="1_kss8r"]
+[ext_resource type="Material" uid="uid://bsuxrdje742yp" path="res://Content/Resources/Material/GradientMaterial.tres" id="2_5yxxf"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kss8r")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="GameTitleLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Gato Slime"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VersionLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "v 0.01"
+fit_content = true
+autowrap_mode = 0
+
+[node name="DateLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "05.09.2025"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="Container" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -48.0
+offset_right = 52.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Container"]
+material = ExtResource("2_5yxxf")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/MarginContainer2"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="Container/MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play"
+
+[node name="DebugButton" type="Button" parent="Container/MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Debug"
+
+[node name="ExitButton" type="Button" parent="Container/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
