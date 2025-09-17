@@ -3,10 +3,11 @@ using GatoSlime.Common;
 using GatoSlime.Entity;
 using GatoSlime.Game.Props;
 using Godot;
+using LKMQUtils;
 
 namespace GatoSlime.Game.Player;
 
-public partial class Player : CharacterBody2D
+public partial class Player : BaseEntity
 {
     public PlayerStateMachine StateMachine { get; private set; }
     public float Speed { get; set; }
@@ -65,7 +66,6 @@ public partial class Player : CharacterBody2D
 
         StateMachine.SetState<IdleState>();
     }
-
 
     public override void _PhysicsProcess(double delta)
     {
@@ -128,7 +128,7 @@ public partial class Player : CharacterBody2D
     public void CancelJump()
     {
         if (Velocity.Y < 0)
-            Velocity = new Vector2(Velocity.X, JumpVelocity/4);
+            Velocity = new Vector2(Velocity.X, JumpVelocity / 4);
     }
 
     public void StartCoyote()
@@ -203,19 +203,19 @@ public partial class Player : CharacterBody2D
             _laddersCount--;
     }
 
-    private void OnHitboxBodyExited(Node body)
-    {
-       
-    }
+    private void OnHitboxBodyExited(Node body) { }
 
-
-    private void OnHitboxBodyEntered(Node body)
-    {
-    }
-
+    private void OnHitboxBodyEntered(Node body) { }
 
     private void FlipView()
     {
         _view.Scale = new Vector2(LastMoveDirection.X > 0 ? 1 : -1, 1);
     }
+
+    public override void Die()
+    {
+        Logger.Debug("Player fucking dies");
+    }
+
+    public override void TakeDamage(int amount) { }
 }

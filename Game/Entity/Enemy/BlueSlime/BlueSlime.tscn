@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://sm72jpasqvio"]
+[gd_scene load_steps=11 format=3 uid="uid://sm72jpasqvio"]
 
 [ext_resource type="Texture2D" uid="uid://bpxvcikqrdcqm" path="res://Content/Art/Slime.png" id="1_3osgk"]
 [ext_resource type="Script" uid="uid://bqjx067swkh7u" path="res://Game/Entity/Enemy/BlueSlime/BlueSlime.cs" id="1_mhqgg"]
 [ext_resource type="Script" uid="uid://cusai3aj6yh2q" path="res://Game/Entity/Components/DamageArea.cs" id="3_6nnid"]
+[ext_resource type="Script" uid="uid://c7p4p71wr0oo7" path="res://Game/Entity/Components/OnHitEffect.cs" id="3_qw1ud"]
 [ext_resource type="Script" uid="uid://kjkvedqb8vej" path="res://Game/Entity/Components/Hitbox.cs" id="5_1oo8g"]
 [ext_resource type="Script" uid="uid://m8jpuoctuqms" path="res://Game/Entity/Components/KnockbackPlayer.cs" id="5_inplv"]
 
@@ -31,7 +32,7 @@ unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("3_6nnid")
-OnHitEffects = [SubResource("Resource_cmeqi")]
+OnHitEffects = Array[ExtResource("3_qw1ud")]([SubResource("Resource_cmeqi")])
 metadata/_custom_type_script = "uid://cusai3aj6yh2q"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]

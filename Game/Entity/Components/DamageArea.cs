@@ -1,4 +1,3 @@
-using GatoSlime.Game.Player;
 using Godot;
 
 namespace GatoSlime.Entity;
@@ -8,6 +7,9 @@ public partial class DamageArea : Area2D
 {
     [Export]
     public Godot.Collections.Array<OnHitEffect> OnHitEffects { get; private set; } = [];
+
+    [Export]
+    public int Damage { get; set; }
 
     public override void _Ready()
     {
@@ -21,8 +23,12 @@ public partial class DamageArea : Area2D
 
     private void OnBodyEntered(Node2D body)
     {
-        if (body is Player p)
+        if (body is BaseEntity entity)
+        {
             foreach (var e in OnHitEffects)
-                e.Apply(this, p);
+                e.Apply(this, entity);
+
+            entity.TakeDamage(Damage);
+        }
     }
 }

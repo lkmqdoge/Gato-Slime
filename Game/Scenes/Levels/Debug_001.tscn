@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://b1erno3wa1kvu"]
+[gd_scene load_steps=5 format=4 uid="uid://b1erno3wa1kvu"]
 
 [ext_resource type="TileSet" uid="uid://xxc1kb6myqnt" path="res://Content/Resources/Tileset/TileSetDungeon.tres" id="1_l0yhs"]
-[ext_resource type="PackedScene" uid="uid://byagbfrpk8sgs" path="res://Game/Entity/Player/Player.tscn" id="2_mfnuh"]
 [ext_resource type="PackedScene" uid="uid://cs60omj2o3a3c" path="res://Game/Props/SlimeFlood/SlimeFlood.tscn" id="3_hty1w"]
 [ext_resource type="PackedScene" uid="uid://ciwmxvyp21riy" path="res://Game/Scenes/PauseController.tscn" id="4_db5xa"]
 [ext_resource type="PackedScene" uid="uid://sm72jpasqvio" path="res://Game/Entity/Enemy/BlueSlime/BlueSlime.tscn" id="5_jmn5n"]
@@ -17,10 +16,6 @@ tile_set = ExtResource("1_l0yhs")
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAEAPj/AwAAAAAAAQAEAPn/AwAAAAAAAQAEAPr/AwAAAAAAAQAEAPv/AwAAAAAAAQAEAPz/AwAAAAAAAQAEAP3/AwAAAAAAAQAEAP7/AwAAAAAAAQAEAP//AwAAAAAAAQAEAAAAAwAAAAAAAQD7//j/AwAAAAAAAQD7//n/AwAAAAAAAQD7//r/AwAAAAAAAQD7//v/AwAAAAAAAQD7//z/AwAAAAAAAQD7//3/AwAAAAAAAQD7//7/AwAAAAAAAQD7////AwAAAAAAAQD7/wAAAwAAAAAAAQD7//T/AwAAAAAAAQD7//X/AwAAAAAAAQD7//b/AwAAAAAAAQD7//f/AwAAAAAAAQAEAPT/AwAAAAAAAQAEAPX/AwAAAAAAAQAEAPb/AwAAAAAAAQAEAPf/AwAAAAAAAQA=")
 tile_set = ExtResource("1_l0yhs")
-
-[node name="Player" parent="." instance=ExtResource("2_mfnuh")]
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="SlimeFlood" parent="." instance=ExtResource("3_hty1w")]
 

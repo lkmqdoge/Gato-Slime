@@ -39,5 +39,6 @@ public static class GameConstants
 
         public const string Stage = "uid://dsogacyl3drsd";
         public const string Debug001 = "uid://b1erno3wa1kvu";
+        public const string Player = "uid://byagbfrpk8sgs";
     }
 }

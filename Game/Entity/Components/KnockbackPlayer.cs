@@ -1,4 +1,3 @@
-using GatoSlime.Game.Player;
 using Godot;
 
 namespace GatoSlime.Entity;
@@ -9,7 +8,7 @@ public partial class KnockbackPlayer : OnHitEffect
     [Export]
     public float KnockbackPower = 30.0f;
 
-    public override void Apply(Node2D from, Player player)
+    public override void Apply(Node2D from, BaseEntity player)
     {
         var dir = from.GlobalPosition.DirectionTo(player.GlobalPosition);
         player.Velocity += dir * KnockbackPower;

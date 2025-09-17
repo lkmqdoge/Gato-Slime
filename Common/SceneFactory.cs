@@ -13,6 +13,7 @@ public static class SceneFactory
         { "Stage", GameConstants.UIDS.Stage },
         { "Debug001", GameConstants.UIDS.Debug001 },
         { "OptionsMenu", GameConstants.UIDS.OptionsMenu },
+        { "Player", GameConstants.UIDS.Player }
     };
 
     public static Node CreateElement(string key) => CreateElement<Node>(key);
