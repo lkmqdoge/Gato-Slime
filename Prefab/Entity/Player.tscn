@@ -1,15 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://byagbfrpk8sgs"]
+[gd_scene load_steps=23 format=3 uid="uid://byagbfrpk8sgs"]
 
 [ext_resource type="Script" uid="uid://bq03tbi0t2f10" path="res://Game/Entity/Player/Player.cs" id="1_e0wbv"]
+[ext_resource type="Script" uid="uid://kjkvedqb8vej" path="res://Game/Entity/Components/Hitbox.cs" id="3_lv4me"]
 [ext_resource type="Script" uid="uid://g53fbwntwiir" path="res://Game/Entity/Components/Health.cs" id="4_wib80"]
 [ext_resource type="Shader" uid="uid://dlwdlc80cvhck" path="res://Content/Resources/Shader/outline.gdshader" id="17_86ark"]
 [ext_resource type="Texture2D" uid="uid://dg1n3t31y7i05" path="res://Content/Art/Player/GatoSlime.png" id="17_nbrqn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0wbv"]
-size = Vector2(14, 14)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_nbrqn"]
-radius = 11.0454
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wg23h"]
 shader = ExtResource("17_86ark")
@@ -53,7 +48,7 @@ step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%BodySprite:rotation")
+tracks/0/path = NodePath("BodySprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,7 +65,7 @@ step = 0.0833333
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%BodySprite:rotation")
+tracks/0/path = NodePath("BodySprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -90,7 +85,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%BodySprite:rotation")
+tracks/0/path = NodePath("BodySprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -108,7 +103,7 @@ step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%BodySprite:rotation")
+tracks/0/path = NodePath("BodySprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -127,6 +122,12 @@ _data = {
 &"Walk": SubResource("Animation_nbrqn")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0wbv"]
+size = Vector2(14, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v4p83"]
+radius = 7.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 9
@@ -141,19 +142,10 @@ one_shot = true
 unique_name_in_owner = true
 
 [node name="Health" type="Node" parent="."]
-script = ExtResource("4_wib80")
-metadata/_custom_type_script = "uid://g53fbwntwiir"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_e0wbv")
-
-[node name="Hitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 12
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_nbrqn")
+script = ExtResource("4_wib80")
+Max = 1
+metadata/_custom_type_script = "uid://g53fbwntwiir"
 
 [node name="View" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -175,3 +167,17 @@ anim_player = NodePath("../AnimationPlayer")
 libraries = {
 &"": SubResource("AnimationLibrary_86ark")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e0wbv")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("Entity")]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 12
+script = ExtResource("3_lv4me")
+Entity = NodePath("..")
+metadata/_custom_type_script = "uid://kjkvedqb8vej"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_v4p83")

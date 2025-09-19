@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://ql1slixg3b62"]
+
+[ext_resource type="Texture2D" uid="uid://nbdcypbebluy" path="res://Content/Art/WallCrawler.png" id="2_mnf81"]
+[ext_resource type="Script" uid="uid://dfkbfpvmyql0e" path="res://Game/Entity/Enemy/CrawlEnemy.cs" id="3_53wbd"]
+[ext_resource type="Script" uid="uid://kjkvedqb8vej" path="res://Game/Entity/Components/Hitbox.cs" id="3_ld211"]
+[ext_resource type="Script" uid="uid://g53fbwntwiir" path="res://Game/Entity/Components/Health.cs" id="4_ld211"]
+[ext_resource type="Script" uid="uid://cusai3aj6yh2q" path="res://Game/Entity/Components/DamageArea.cs" id="5_y1ohs"]
+
+[sub_resource type="Animation" id="Animation_53wbd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mnf81"]
+resource_name = "Walk"
+length = 1.33337
+loop_mode = 1
+step = 0.333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_53wbd"]
+_data = {
+&"RESET": SubResource("Animation_53wbd"),
+&"Walk": SubResource("Animation_mnf81")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xbpp"]
+size = Vector2(10, 8)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t8d38"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y1ohs"]
+radius = 4.0
+height = 12.0
+
+[node name="WallCrawler" type="CharacterBody2D"]
+script = ExtResource("3_53wbd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("2_mnf81")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_53wbd")
+}
+autoplay = "Walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8xbpp")
+
+[node name="Health" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_ld211")
+metadata/_custom_type_script = "uid://g53fbwntwiir"
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("Entity")]
+unique_name_in_owner = true
+script = ExtResource("3_ld211")
+Entity = NodePath("..")
+metadata/_custom_type_script = "uid://kjkvedqb8vej"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -3)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_t8d38")
+
+[node name="DamageArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_y1ohs")
+metadata/_custom_type_script = "uid://cusai3aj6yh2q"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_y1ohs")

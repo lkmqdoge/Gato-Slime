@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://sm72jpasqvio"]
 
 [ext_resource type="Texture2D" uid="uid://bpxvcikqrdcqm" path="res://Content/Art/Slime.png" id="1_3osgk"]
-[ext_resource type="Script" uid="uid://bqjx067swkh7u" path="res://Game/Entity/Enemy/BlueSlime/BlueSlime.cs" id="1_mhqgg"]
+[ext_resource type="Script" uid="uid://bqjx067swkh7u" path="res://Game/Entity/Enemy/BlueSlime.cs" id="1_mhqgg"]
 [ext_resource type="Script" uid="uid://cusai3aj6yh2q" path="res://Game/Entity/Components/DamageArea.cs" id="3_6nnid"]
 [ext_resource type="Script" uid="uid://c7p4p71wr0oo7" path="res://Game/Entity/Components/OnHitEffect.cs" id="3_qw1ud"]
 [ext_resource type="Script" uid="uid://kjkvedqb8vej" path="res://Game/Entity/Components/Hitbox.cs" id="5_1oo8g"]

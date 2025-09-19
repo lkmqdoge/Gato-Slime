@@ -19,6 +19,9 @@ public class LadderState(Player player, PlayerStateMachine stateMachine)
             GameConstants.PlayerLadderSpeed * Player.MoveDirection.Y * (float)delta
         );
         Player.MoveAndSlide();
+
+        if (Player.IsOnFloor())
+            Player.GoDown();
     }
 
     public override void UpdateLogic(double delta)

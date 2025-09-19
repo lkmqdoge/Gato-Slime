@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp6jh82p66cco"]
+
+[ext_resource type="Script" uid="uid://cusai3aj6yh2q" path="res://Game/Entity/Components/DamageArea.cs" id="1_0pdpa"]
+[ext_resource type="Texture2D" uid="uid://jwecrr1x25oa" path="res://Content/Art/Spikes.png" id="2_240rs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_404ne"]
+atlas = ExtResource("2_240rs")
+region = Rect2(8, 8, 8, 8)
+
+[node name="Spikes" type="Area2D"]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_0pdpa")
+Damage = 1
+metadata/_custom_type_script = "uid://cusai3aj6yh2q"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, 8, -3, 0, -1, 7, 1, 7, 5, 0, 8, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, 4)
+texture = SubResource("AtlasTexture_404ne")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(4, 4)
+texture = SubResource("AtlasTexture_404ne")

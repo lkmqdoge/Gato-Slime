@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://derl3oii0y7v5"]
+
+[ext_resource type="Script" uid="uid://cusai3aj6yh2q" path="res://Game/Entity/Components/DamageArea.cs" id="1_xq3kf"]
+[ext_resource type="Texture2D" uid="uid://c8prcfsrr3usv" path="res://Content/Art/Chainsaws.png" id="2_ha1fc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha1fc"]
+atlas = ExtResource("2_ha1fc")
+region = Rect2(48, 32, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awe8t"]
+atlas = ExtResource("2_ha1fc")
+region = Rect2(0, 32, 48, 48)
+
+[sub_resource type="Animation" id="Animation_ha1fc"]
+resource_name = "Running"
+length = 5.00002
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:offset:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 999, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5.00002)
+}
+
+[sub_resource type="Animation" id="Animation_awe8t"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:offset:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_awe8t"]
+_data = {
+&"RESET": SubResource("Animation_awe8t"),
+&"Running": SubResource("Animation_ha1fc")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ha1fc"]
+radius = 23.0217
+
+[node name="GigaSawBlade" type="Area2D"]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_xq3kf")
+Damage = 99
+metadata/_custom_type_script = "uid://cusai3aj6yh2q"
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+rotation = 6.28319
+texture = SubResource("AtlasTexture_ha1fc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D2"]
+rotation = 2.00983
+texture = SubResource("AtlasTexture_awe8t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_awe8t")
+}
+autoplay = "Running"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ha1fc")

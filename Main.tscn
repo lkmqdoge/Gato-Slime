@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddv5qhbn0udih"]
+[gd_scene load_steps=7 format=3 uid="uid://ddv5qhbn0udih"]
 
 [ext_resource type="Script" uid="uid://np1yhill03ih" path="res://Main.cs" id="1_wd0a0"]
+[ext_resource type="Script" uid="uid://dlvtgiqdaql6s" path="res://Game/GameSceneFactory.cs" id="2_3dxm6"]
 [ext_resource type="Script" uid="uid://b86k5ulx4wrpq" path="res://Game/SceneManager.cs" id="2_64c24"]
 [ext_resource type="Script" uid="uid://b3l5qa4taoac2" path="res://UI/UIManager.cs" id="3_4m1ep"]
-[ext_resource type="PackedScene" uid="uid://bpxb6a4jyjhyq" path="res://UI/PauseMenu/PauseMenu.tscn" id="4_1lb6w"]
+[ext_resource type="PackedScene" uid="uid://bpxb6a4jyjhyq" path="res://Prefab/UI/PauseMenu.tscn" id="4_1lb6w"]
+[ext_resource type="Script" uid="uid://ca1mmq58113mg" path="res://UI/UISoundPlayer.cs" id="4_fos0i"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_wd0a0")
+
+[node name="SceneFactory" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_3dxm6")
 
 [node name="SceneManager" type="Node" parent="." node_paths=PackedStringArray("Root", "UIRoot")]
 unique_name_in_owner = true
@@ -20,6 +26,15 @@ script = ExtResource("3_4m1ep")
 PauseLayer = NodePath("../CanvasLayer/PauseLayer")
 DebugLayer = NodePath("../CanvasLayer/DebugLayer")
 HUDLayer = NodePath("../CanvasLayer/HUDLevel")
+
+[node name="UISoundPlayer" type="Node" parent="." node_paths=PackedStringArray("_player")]
+unique_name_in_owner = true
+process_mode = 3
+script = ExtResource("4_fos0i")
+_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UISoundPlayer"]
+bus = &"SFX"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15

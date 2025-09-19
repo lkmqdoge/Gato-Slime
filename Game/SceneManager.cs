@@ -13,7 +13,7 @@ public partial class SceneManager : Node
     [Export]
     public Node UIRoot { get; set; }
 
-    private Node _currentScene;
+    public Node CurrentScene { get; private set; }
 
     public override void _Ready()
     {
@@ -30,8 +30,8 @@ public partial class SceneManager : Node
     {
         if (scene is not null)
         {
-            _currentScene?.QueueFree();
-            _currentScene = scene;
+            CurrentScene?.QueueFree();
+            CurrentScene = scene;
 
             if (scene is Control)
                 UIRoot.AddChild(scene);

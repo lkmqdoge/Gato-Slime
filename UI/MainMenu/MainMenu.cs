@@ -19,12 +19,12 @@ public partial class MainMenu : Control
 
     private void OnDebugPressed()
     {
-        SceneManager.Instance.ChangeScene(SceneFactory.CreateElement("Debug001"));
+        SceneManager.Instance.ChangeScene(Main.Instance.SceneFactory.CreateElement("Debug001"));
     }
 
 
     private void OnStartPressed()
     {
-        SceneManager.Instance.ChangeScene(SceneFactory.CreateElement("Stage"));
+        SceneManager.Instance.ChangeScene(Main.Instance.SceneFactory.CreateElement("Stage"));
     }
 }

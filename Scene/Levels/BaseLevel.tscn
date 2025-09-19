@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://ii6nxr5lh2f1"]
+
+[ext_resource type="Script" uid="uid://17rea7vcxgh6" path="res://Game/World/Level/BaseLevel.cs" id="1_lyycx"]
+[ext_resource type="PackedScene" uid="uid://ciwmxvyp21riy" path="res://Prefab/PauseController.tscn" id="2_bsjss"]
+[ext_resource type="Script" uid="uid://d26bjx4snp0yp" path="res://Game/Props/PlayerSpawner/PlayerSpawner.cs" id="3_bsjss"]
+[ext_resource type="Script" uid="uid://hr3pevrtrinw" path="res://CameraFollow.cs" id="4_vxt3b"]
+[ext_resource type="PackedScene" uid="uid://brk8353l7l45q" path="res://Prefab/Particles/DeathEffect_01.tscn" id="4_ynhvt"]
+[ext_resource type="AudioStream" uid="uid://ix3uikhmdm4v" path="res://Content/Sound/SFX/Player_Death_01.wav" id="5_vngot"]
+
+[node name="LevelBase" type="Node2D"]
+script = ExtResource("1_lyycx")
+metadata/_edit_group_ = true
+
+[node name="PauseController" parent="." instance=ExtResource("2_bsjss")]
+unique_name_in_owner = true
+
+[node name="PlayerSpawner" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_bsjss")
+metadata/_custom_type_script = "uid://d26bjx4snp0yp"
+
+[node name="RespawnTimer" type="Timer" parent="PlayerSpawner"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[node name="DeathEffect" parent="PlayerSpawner" instance=ExtResource("4_ynhvt")]
+unique_name_in_owner = true
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="PlayerSpawner"]
+unique_name_in_owner = true
+stream = ExtResource("5_vngot")
+
+[node name="CameraFollow" type="Camera2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_vxt3b")
+VerticalWeight = 10.0
+HorizontalWeight = 10.0
+metadata/_custom_type_script = "uid://hr3pevrtrinw"

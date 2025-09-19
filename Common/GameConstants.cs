@@ -10,7 +10,8 @@ public static class GameConstants
     public const string Jump = "jump";
 
     public const string Pause = "pause";
-    public const string DebugReload = "debug_reload";
+    public const string DebugReload = "_debug_reload";
+    public const string DebugShowCollisions = "_debug_show_collisions";
 
     // Player physic
     public const float PlayerWalkSpeed = 120.0f;
@@ -40,5 +41,7 @@ public static class GameConstants
         public const string Stage = "uid://dsogacyl3drsd";
         public const string Debug001 = "uid://b1erno3wa1kvu";
         public const string Player = "uid://byagbfrpk8sgs";
+
+        public const string DeathEffect_01 = "uid://brk8353l7l45q";
     }
 }

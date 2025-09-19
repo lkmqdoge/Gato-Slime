@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsogacyl3drsd"]
+
+[ext_resource type="Script" uid="uid://do1v4qu2n1it8" path="res://Game/World/Stage.cs" id="1_8pqp3"]
+[ext_resource type="Script" uid="uid://drwcwkphn1rvg" path="res://Game/World/WorldGenerator.cs" id="2_n6j6g"]
+[ext_resource type="PackedScene" uid="uid://byagbfrpk8sgs" path="res://Prefab/Entity/Player.tscn" id="3_k3oiq"]
+[ext_resource type="Script" uid="uid://hr3pevrtrinw" path="res://CameraFollow.cs" id="4_ucahb"]
+[ext_resource type="PackedScene" uid="uid://ciwmxvyp21riy" path="res://Prefab/PauseController.tscn" id="5_ip8hv"]
+
+[node name="Stage" type="Node2D"]
+script = ExtResource("1_8pqp3")
+
+[node name="WorldGenerator" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_n6j6g")
+metadata/_custom_type_script = "uid://drwcwkphn1rvg"
+
+[node name="Player" parent="." instance=ExtResource("3_k3oiq")]
+position = Vector2(91, 150)
+
+[node name="CameraFollow" type="Camera2D" parent="." node_paths=PackedStringArray("Target")]
+position = Vector2(96, 160)
+limit_bottom = 320
+script = ExtResource("4_ucahb")
+Target = NodePath("../Player")
+VerticalWeight = 2.3
+HorizontalWeight = 0.2
+metadata/_custom_type_script = "uid://hr3pevrtrinw"
+
+[node name="PauseController" parent="." instance=ExtResource("5_ip8hv")]

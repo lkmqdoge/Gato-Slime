@@ -16,33 +16,22 @@ public partial class PauseMenu : Control
         _optionsButton = GetNode<Button>("%OptionsButton");
         _exitButton = GetNode<Button>("%ExitButton");
 
-        _continueButton.Pressed += OnContinuePressed;
-        _optionsButton.Pressed += OnOptionsPressed;
-        _exitButton.Pressed += OnExitPressed;
+        _continueButton.Connect(BaseButton.SignalName.Pressed, Callable.From(OnContinuePressed));
+        _optionsButton.Connect(BaseButton.SignalName.Pressed, Callable.From(OnOptionsPressed));
+        _exitButton.Connect(BaseButton.SignalName.Pressed, Callable.From(OnExitPressed));
     }
-
-    public override void _ExitTree()
-    {
-        _continueButton.Pressed -= OnContinuePressed;
-        _optionsButton.Pressed -= OnOptionsPressed;
-        _exitButton.Pressed -= OnExitPressed;
-    }
-
 
     private void OnExitPressed()
     {
-        SceneManager.Instance.ChangeScene(SceneFactory.CreateElement("MainMenu"));
+        SceneManager.Instance.ChangeScene(Main.Instance.SceneFactory.CreateElement("MainMenu"));
         UIManager.Instance.HidePause();
     }
 
-
-    private void OnOptionsPressed()
-    {
-    }
-
+    private void OnOptionsPressed() { }
 
     private void OnContinuePressed()
     {
         UIManager.Instance.HidePause();
+        Main.Instance.UISoundPlayer.Play("pause_out");
     }
 }

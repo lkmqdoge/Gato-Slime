@@ -9,11 +9,13 @@ namespace GatoSlime.Game.Player;
 
 public partial class Player : BaseEntity
 {
-    public PlayerStateMachine StateMachine { get; private set; }
     public float Speed { get; set; }
     public float Acceleration { get; set; }
     public float Deceleration { get; set; }
+    public int LadderCount { get; set; }
+    public Vector2 LastLadderPosition { get; set; }
 
+    public PlayerStateMachine StateMachine { get; private set; }
     public Vector2 MoveDirection { get; private set; }
     public Vector2 LastMoveDirection { get; private set; }
     public float JumpGravity { get; private set; }
@@ -24,12 +26,8 @@ public partial class Player : BaseEntity
     public float JumpTimeToDescent { get; private set; }
     public float JumpHeight { get; private set; }
 
-    public Vector2 LastLadderPosition { get; private set; }
-
-    public int JumpsLeft;
-    public int MaxJumps = 2;
-
-    private int _laddersCount;
+    public int JumpsLeft { get; set; }
+    public int MaxJumps { get; set; } = 2;
 
     private Area2D _hitbox;
     private Node2D _view;
@@ -40,6 +38,7 @@ public partial class Player : BaseEntity
 
     public override void _Ready()
     {
+        base._Ready();
         JumpTimeToPeak = GameConstants.PlayerJumpTimeToPeak;
         JumpTimeToDescent = GameConstants.PlayerJumpTimeToDescent;
         JumpHeight = GameConstants.PlayerJumpHeight;
@@ -52,8 +51,6 @@ public partial class Player : BaseEntity
         _playback = (AnimationNodeStateMachinePlayback)
             GetNode<AnimationTree>("%AnimationTree").Get("parameters/playback");
 
-        _hitbox.Connect(Area2D.SignalName.AreaEntered, Callable.From<Area2D>(OnHitboxEntered));
-        _hitbox.Connect(Area2D.SignalName.AreaExited, Callable.From<Area2D>(OnHitboxExited));
         _hitbox.Connect(Area2D.SignalName.BodyEntered, Callable.From<Node>(OnHitboxBodyEntered));
         _hitbox.Connect(Area2D.SignalName.BodyExited, Callable.From<Node>(OnHitboxBodyExited));
 
@@ -144,7 +141,7 @@ public partial class Player : BaseEntity
 
     public bool IsOnLadder()
     {
-        return _laddersCount > 0;
+        return LadderCount > 0;
     }
 
     public void ReadInput()
@@ -183,26 +180,6 @@ public partial class Player : BaseEntity
         _playback.Travel(name);
     }
 
-    private void OnHitboxEntered(Area2D area)
-    {
-        if (area is Ladder ladder)
-        {
-            _laddersCount++;
-            LastLadderPosition = ladder.GlobalPosition;
-        }
-
-        if (area is Hitbox h)
-        {
-            h.Entity.Die();
-        }
-    }
-
-    private void OnHitboxExited(Area2D area)
-    {
-        if (area is Ladder)
-            _laddersCount--;
-    }
-
     private void OnHitboxBodyExited(Node body) { }
 
     private void OnHitboxBodyEntered(Node body) { }
@@ -216,6 +193,4 @@ public partial class Player : BaseEntity
     {
         Logger.Debug("Player fucking dies");
     }
-
-    public override void TakeDamage(int amount) { }
 }
